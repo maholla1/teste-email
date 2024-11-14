@@ -1,11 +1,12 @@
 "use server";
 import { compileWelcomeTemplate, sendMail } from "./mail";
 
-export const send = async (email: string) => {
+export const send = async (email: string, fullName: string) => {
+    const firstName = fullName.split(" ")[0]; // Extrai o primeiro nome
     await sendMail({
       to: email,
-      name: "Pedro",
+      name: firstName,
       subject: "Test Mail",
-      body: compileWelcomeTemplate("Pedro", "www.youtube.com/watch?v=sENM2wA_FTg&list=RD5CcZ4ULT1Eo&index=9"),
+      body: compileWelcomeTemplate(firstName, "github.com/maholla1/teste-email"),
     });
   };
